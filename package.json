@@ -9,7 +9,9 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
-    "test": "npm run build && node --test tests/vercel-build.test.mjs",
+    "test": "npm run build && npm run test:code && npm run test:deploy",
+    "test:code": "node --test tests/vercel-build.test.mjs",
+    "test:deploy": "bash -n deploy/scripts/bootstrap-server.sh deploy/scripts/update-server.sh deploy/scripts/enable-https.sh && node --test tests/deployment-readiness.test.mjs",
     "lint": "eslint . --ignore-pattern .next"
   },
   "dependencies": {

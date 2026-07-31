@@ -7,6 +7,7 @@ readonly APP_GROUP="rwstudio"
 readonly APP_HOME="/var/lib/rwstudio"
 readonly APP_DIR="/opt/rw-studio"
 readonly REPOSITORY_URL="${RW_STUDIO_REPOSITORY_URL:-https://github.com/3526621378-code/RW-Studio-2.0.git}"
+readonly NPM_REGISTRY="${RW_STUDIO_NPM_REGISTRY:-https://registry.npmmirror.com}"
 
 if [[ "${EUID}" -ne 0 ]]; then
   echo "Run this script as root." >&2
@@ -42,6 +43,7 @@ chown -R "${APP_USER}:${APP_GROUP}" "${APP_DIR}" "${APP_HOME}"
 
 runuser -u "${APP_USER}" -- env \
   HOME="${APP_HOME}" \
+  NPM_CONFIG_REGISTRY="${NPM_REGISTRY}" \
   NEXT_TELEMETRY_DISABLED=1 \
   npm --prefix "${APP_DIR}" ci
 

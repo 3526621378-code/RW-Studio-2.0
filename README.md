@@ -56,6 +56,9 @@ sudo RW_STUDIO_REPOSITORY_URL="https://gitee.com/你的账号/rw-studio.git" \
   bash deploy/scripts/bootstrap-server.sh
 ```
 
+服务器安装依赖时默认使用阿里维护的 `registry.npmmirror.com` 国内镜像，
+仓库地址和 npm 镜像均可通过环境变量覆盖。
+
 以后从 GitHub 拉取新版本并重新构建：
 
 ```bash
@@ -68,6 +71,12 @@ sudo bash /opt/rw-studio/deploy/scripts/update-server.sh
 - Nginx 对外监听 `80`，并预留 `443`
 - `/healthz` 用于服务器健康检查
 - OpenClaw 和其他现有服务保持独立
+
+域名解析生效后，使用以下脚本申请并启用 HTTPS：
+
+```bash
+sudo bash /opt/rw-studio/deploy/scripts/enable-https.sh "你的证书联系邮箱"
+```
 
 备案通过后的 DNS、HTTPS、ICP备案号和公安联网备案准备事项见
 [`deploy/POST_FILING_CHECKLIST.md`](deploy/POST_FILING_CHECKLIST.md)。
