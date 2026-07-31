@@ -25,9 +25,12 @@ export async function generateMetadata() {
     .trim();
 
   let metadataBase;
+  const configuredSiteUrl = process.env.SITE_URL?.trim();
 
   try {
-    metadataBase = new URL(`${protocol}://${host}`);
+    metadataBase = configuredSiteUrl
+      ? new URL(configuredSiteUrl)
+      : new URL(`${protocol}://${host}`);
   } catch {
     metadataBase = new URL("http://localhost");
   }
@@ -40,6 +43,9 @@ export async function generateMetadata() {
     },
     description:
       "RW Studio 若雾工作室，在东方美学与未来数字技术之间探索新的艺术表达。",
+    alternates: {
+      canonical: "/",
+    },
     icons: {
       icon: "/favicon.png",
       shortcut: "/favicon.png",
@@ -48,6 +54,7 @@ export async function generateMetadata() {
       type: "website",
       locale: "zh_CN",
       siteName: "RW Studio",
+      url: "/",
       title: "RW Studio | 若雾工作室",
       description:
         "在传统东方意境与未来数字技术之间，探索新的艺术表达方式。",

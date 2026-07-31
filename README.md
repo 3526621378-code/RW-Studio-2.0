@@ -49,6 +49,13 @@ Vercel 将自动运行本项目的 `npm run build` 并使用 `.next` 输出，�
 sudo bash deploy/scripts/bootstrap-server.sh
 ```
 
+中国内地服务器建议从 Gitee 镜像拉取，可在执行时指定仓库：
+
+```bash
+sudo RW_STUDIO_REPOSITORY_URL="https://gitee.com/你的账号/rw-studio.git" \
+  bash deploy/scripts/bootstrap-server.sh
+```
+
 以后从 GitHub 拉取新版本并重新构建：
 
 ```bash
@@ -61,6 +68,9 @@ sudo bash /opt/rw-studio/deploy/scripts/update-server.sh
 - Nginx 对外监听 `80`，并预留 `443`
 - `/healthz` 用于服务器健康检查
 - OpenClaw 和其他现有服务保持独立
+
+备案通过后的 DNS、HTTPS、ICP备案号和公安联网备案准备事项见
+[`deploy/POST_FILING_CHECKLIST.md`](deploy/POST_FILING_CHECKLIST.md)。
 
 ## 页面
 

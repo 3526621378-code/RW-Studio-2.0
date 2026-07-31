@@ -38,17 +38,22 @@ test("Next.js emits every public RW Studio route", async () => {
 });
 
 test("keeps the finished brand, artwork and accessibility details", async () => {
-  const [layout, home, styles] = await Promise.all([
+  const [layout, home, compliance, styles] = await Promise.all([
     read("app/layout.jsx"),
     read("app/page.jsx"),
+    read("app/components/SiteCompliance.jsx"),
     read("app/globals.css"),
   ]);
 
   assert.match(layout, /RW Studio \| 若雾工作室/);
   assert.match(layout, /className="skip-link"/);
   assert.match(layout, /og\.png/);
+  assert.match(layout, /process\.env\.SITE_URL/);
   assert.match(home, /PhaseSection/);
   assert.match(home, /ArtLab/);
+  assert.match(home, /SiteCompliance/);
+  assert.match(compliance, /beian\.miit\.gov\.cn/);
+  assert.match(compliance, /process\.env\.ICP_NUMBER/);
   assert.match(styles, /\.timescape-stage\s*\{[\s\S]*?z-index:\s*0;/);
   assert.match(styles, /\.route-transition-shell\s*\{[\s\S]*?z-index:\s*10;/);
 

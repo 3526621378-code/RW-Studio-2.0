@@ -6,7 +6,7 @@ readonly APP_USER="rwstudio"
 readonly APP_GROUP="rwstudio"
 readonly APP_HOME="/var/lib/rwstudio"
 readonly APP_DIR="/opt/rw-studio"
-readonly REPOSITORY_URL="https://github.com/3526621378-code/RW-Studio-2.0.git"
+readonly REPOSITORY_URL="${RW_STUDIO_REPOSITORY_URL:-https://github.com/3526621378-code/RW-Studio-2.0.git}"
 
 if [[ "${EUID}" -ne 0 ]]; then
   echo "Run this script as root." >&2
@@ -59,6 +59,13 @@ fi
 
 install -m 0644 "${APP_DIR}/deploy/nginx/nginx.conf" /etc/nginx/nginx.conf
 install -m 0644 "${APP_DIR}/deploy/systemd/rw-studio.service" /etc/systemd/system/rw-studio.service
+install -d -o nginx -g nginx /var/www/certbot
+
+if [[ ! -f /etc/rw-studio.env ]]; then
+  install -m 0640 -o root -g "${APP_GROUP}" \
+    "${APP_DIR}/deploy/env/rw-studio.env.example" \
+    /etc/rw-studio.env
+fi
 
 nginx -t
 systemctl daemon-reload
@@ -66,6 +73,6 @@ systemctl enable --now rw-studio.service
 systemctl enable --now nginx.service
 
 curl --fail --silent --show-error http://127.0.0.1:3000/ >/dev/null
-curl --fail --silent --show-error http://127.0.0.1/healthz
+curl --fail --silent --show-error --header "Host: rw-studio.cn" http://127.0.0.1/healthz
 
 echo "RW Studio bootstrap completed."

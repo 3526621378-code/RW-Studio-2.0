@@ -39,6 +39,6 @@ install -d -o "${APP_USER}" -g "${APP_USER}" "${APP_DIR}/.next/cache"
 systemctl restart rw-studio.service
 
 curl --fail --silent --show-error http://127.0.0.1:3000/ >/dev/null
-curl --fail --silent --show-error http://127.0.0.1/healthz
+curl --fail --silent --show-error --header "Host: rw-studio.cn" http://127.0.0.1/healthz
 
 echo "RW Studio update completed."

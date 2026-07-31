@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArtLab } from "@/app/components/lab/ArtLab";
 import { PageFrame } from "@/app/components/PageFrame";
+import { SiteCompliance } from "@/app/components/SiteCompliance";
 import { PhaseSection } from "@/app/components/timescape/PhaseSection";
 import {
   experiment,
@@ -210,6 +211,7 @@ export default function HomePage() {
             <span>RW Studio / 若雾工作室</span>
             <span>Eastern Digital Art &amp; Creative Technology</span>
             <span>© {new Date().getFullYear()}</span>
+            <SiteCompliance />
           </footer>
         </div>
       </PhaseSection>
