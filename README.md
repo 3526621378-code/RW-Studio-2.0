@@ -41,6 +41,27 @@ npm test
 
 Vercel 将自动运行本项目的 `npm run build` 并使用 `.next` 输出，不需要 `vercel.json` 或 SPA 重写规则。
 
+## 部署到阿里云轻量应用服务器
+
+生产服务器使用独立的 `rwstudio` 系统用户、systemd 服务与 Nginx 反向代理：
+
+```bash
+sudo bash deploy/scripts/bootstrap-server.sh
+```
+
+以后从 GitHub 拉取新版本并重新构建：
+
+```bash
+sudo bash /opt/rw-studio/deploy/scripts/update-server.sh
+```
+
+部署结构：
+
+- Next.js 仅监听 `127.0.0.1:3000`
+- Nginx 对外监听 `80`，并预留 `443`
+- `/healthz` 用于服务器健康检查
+- OpenClaw 和其他现有服务保持独立
+
 ## 页面
 
 - `/`：沉浸式东方数字山水首页
