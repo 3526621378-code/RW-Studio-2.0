@@ -49,17 +49,17 @@ Vercel 将自动运行本项目的 `npm run build` 并使用 `.next` 输出，�
 sudo bash deploy/scripts/bootstrap-server.sh
 ```
 
-中国内地服务器建议从 Gitee 镜像拉取，可在执行时指定仓库：
+中国内地服务器默认从 RW Studio 的 Gitee 镜像拉取：
 
 ```bash
-sudo RW_STUDIO_REPOSITORY_URL="https://gitee.com/你的账号/rw-studio.git" \
-  bash deploy/scripts/bootstrap-server.sh
+sudo bash deploy/scripts/bootstrap-server.sh
 ```
 
 服务器安装依赖时默认使用阿里维护的 `registry.npmmirror.com` 国内镜像，
-仓库地址和 npm 镜像均可通过环境变量覆盖。
+仓库地址和 npm 镜像仍可分别通过 `RW_STUDIO_REPOSITORY_URL` 和
+`RW_STUDIO_NPM_REGISTRY` 环境变量覆盖。
 
-以后从 GitHub 拉取新版本并重新构建：
+以后从当前部署仓库拉取新版本并重新构建：
 
 ```bash
 sudo bash /opt/rw-studio/deploy/scripts/update-server.sh

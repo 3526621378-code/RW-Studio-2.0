@@ -6,7 +6,7 @@ readonly APP_USER="rwstudio"
 readonly APP_GROUP="rwstudio"
 readonly APP_HOME="/var/lib/rwstudio"
 readonly APP_DIR="/opt/rw-studio"
-readonly REPOSITORY_URL="${RW_STUDIO_REPOSITORY_URL:-https://github.com/3526621378-code/RW-Studio-2.0.git}"
+readonly REPOSITORY_URL="${RW_STUDIO_REPOSITORY_URL:-https://gitee.com/Lenn-R/rw-studio.git}"
 readonly NPM_REGISTRY="${RW_STUDIO_NPM_REGISTRY:-https://registry.npmmirror.com}"
 
 if [[ "${EUID}" -ne 0 ]]; then

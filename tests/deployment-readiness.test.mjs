@@ -20,6 +20,7 @@ test("keeps the mainland deployment isolated from existing services", async () =
   assert.match(service, /EnvironmentFile=-\/etc\/rw-studio\.env/);
   assert.match(service, /NoNewPrivileges=true/);
   assert.match(bootstrap, /RW_STUDIO_REPOSITORY_URL/);
+  assert.match(bootstrap, /https:\/\/gitee\.com\/Lenn-R\/rw-studio\.git/);
   assert.match(bootstrap, /registry\.npmmirror\.com/);
   assert.match(update, /merge --ff-only origin\/main/);
   assert.doesNotMatch(service, /11950/);
